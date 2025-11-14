@@ -1,0 +1,164 @@
+{
+  "input": {
+    "workflow": {
+      "3": {
+        "inputs": {
+          "seed": 1234567890,
+          "steps": 40,
+          "cfg": 4,
+          "sampler_name": "res_2s",
+          "scheduler": "simple",
+          "denoise": 1,
+          "model": [
+            "101",
+            0
+          ],
+          "positive": [
+            "6",
+            0
+          ],
+          "negative": [
+            "7",
+            0
+          ],
+          "latent_image": [
+            "58",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "6": {
+        "inputs": {
+          "text": "amateur photo. A stylish young woman standing outside a modern café in the evening, wearing a white crop top with gothic lettering, olive green cargo pants, and black combat boots. She has long red hair and is looking at her phone with a relaxed expression. The café behind her has large glass windows, warm indoor lighting, a hanging lantern-style light fixture, and outdoor seating. Urban street setting with a slightly moody, early dusk atmosphere.",
+          "clip": [
+            "38",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIP Text Encode (Positive Prompt)"
+        }
+      },
+      "7": {
+        "inputs": {
+          "text": "",
+          "clip": [
+            "38",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "Negative Prompt"
+        }
+      },
+      "8": {
+        "inputs": {
+          "samples": [
+            "3",
+            0
+          ],
+          "vae": [
+            "39",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "37": {
+        "inputs": {
+          "filename": "split_files/diffusion_models/qwen_image_fp8_e4m3fn.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "38": {
+        "inputs": {
+          "filename": "split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "39": {
+        "inputs": {
+          "filename": "split_files/vae/qwen_image_vae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "58": {
+        "inputs": {
+          "width": 1328,
+          "height": 1328,
+          "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+          "title": "EmptySD3LatentImage"
+        }
+      },
+      "60": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "97": {
+        "inputs": {
+          "filename": "Qwen-Image/Qwen-Image_SmartphoneSnapshotPhotoReality_v4_by-AI_Characters_TRIGGER$amateur photo$.safetensors",
+          "model": [
+            "37",
+            0
+          ]
+        },
+        "class_type": "LoraLoaderModelOnly",
+        "_meta": {
+          "title": "LoraLoaderModelOnly"
+        }
+      },
+      "99": {
+        "inputs": {
+          "text": ""
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "GetNode"
+        }
+      },
+      "101": {
+        "inputs": {
+          "value": 2.63,
+          "model": [
+            "97",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingAuraFlow",
+        "_meta": {
+          "title": "ModelSamplingAuraFlow"
+        }
+      }
+    }
+  }
+}
